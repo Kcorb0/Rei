@@ -1,5 +1,6 @@
 # My stuff
 rei/utils/configs/credentials.json
+rei/utils/audio_output/output.wav
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

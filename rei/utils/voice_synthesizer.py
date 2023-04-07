@@ -1,5 +1,6 @@
 import os
 import json
+from playsound import playsound
 from google.cloud import texttospeech as tts
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "rei/utils/configs/credentials.json"
@@ -23,10 +24,12 @@ def text_to_speech(text: str):
         input=synthesizer_input, voice=voice, audio_config=audio_config
     )
 
-    with open("output.wav", "wb") as out:
+    with open("rei/utils/audio_output/output.wav", "wb") as out:
         # Write the response to the output file.
         out.write(response.audio_content)
         print('Audio content written to file "output.wav"')
+
+    playsound("rei/utils/audio_output/output.wav")
 
 
 def voice_configs():
@@ -41,8 +44,3 @@ def voice_configs():
     }
 
     return configs
-
-
-if __name__ == "__main__":
-    test_text = "Is this thing working, Pog I guess it is, L_?"
-    text_to_speech(test_text)
