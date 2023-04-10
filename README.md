@@ -1,4 +1,2 @@
-# REI AI
+<img src="docs\Assets\Logo_Banner.jpg" width="100%">
 
-#### Project Goals
-- Learning, this project is primarily for me to learn
