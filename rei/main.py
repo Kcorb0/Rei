@@ -1,41 +1,21 @@
-import os
+import os, sys
+from datetime import datetime
 import openai
 import json
 from utils.voice_synthesizer import text_to_speech
+from utils.gpt_turbo import conversation
+from utils.time_options import get_time
 
 
-openai.api_key = ""
-model_id = "gpt-3.5-turbo"
-
-
-def chatgpt_conversation(conversation_log):
-    response = openai.ChatCompletion.create(model=model_id, messages=conversation_log)
-    conversation_log.append(
-        {
-            "role": response.choices[0].message.role,
-            "content": response.choices[0].message.content,
-        }
-    )
-
-    return conversation_log
-
-
-# System, assistant, user (System instigates the conversation)
-conversation_log = []
-conversation_log.append({"role": "system", "content": "Let's get started."})
-
-conversation = chatgpt_conversation(conversation_log)
-
-print(f"Role: {conversation[-1]['role']}, Message: {conversation[-1]['content']}")
-
+# Temporary usage loop, will be raplaced later for something practical.
 
 while True:
-    user_prompt = input("User Message: ")
-    if user_prompt == "kill":
-        break
+    choice = input("choice: ")  # Questions, utility
 
-    conversation_log.append({"role": "user", "content": user_prompt})
-    print("\n\n")
-    conversation = chatgpt_conversation(conversation_log)
-    text_to_speech(conversation[-1]["content"])
-    print("\n\n")
+    if choice in ["kill", ""]:
+        break
+    elif choice == "Time":
+        print(get_time())
+        text_to_speech(f"It is, {get_time()}")
+    elif choice == "Question":
+        conversation()
