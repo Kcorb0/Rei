@@ -1,20 +1,21 @@
 import os, sys
 import openai
 import json
-from utils.voice_synthesizer import text_to_speech
+from multiprocessing import process
+from apps import time_tools
+from utils.text_to_speech import text_to_speech
 from utils.gpt_turbo import conversation
-from apps.time_tools import get_time
 
 
 # Temporary usage loop, will be raplaced later for something practical.
 
-while True:
-    choice = input("choice: ")  # Questions, utility
+WAKE_WORD = "Rei"
 
-    if choice in ["kill", ""]:
-        break
-    elif choice == "Time":
-        print(get_time())
-        text_to_speech(f"It is, {get_time()}")
-    elif choice == "Question":
+
+while True:
+    listen = input("")
+
+    if WAKE_WORD in listen:
         conversation()
+    elif listen == "stop":
+        break

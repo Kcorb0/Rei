@@ -1,7 +1,7 @@
 import os
 import openai
 import json
-from utils.voice_synthesizer import text_to_speech
+from utils.text_to_speech import text_to_speech
 
 openai.api_key = json.load(open("rei/utils/configs/credentials.json"))["openai_api_key"]
 model_id = "gpt-3.5-turbo"

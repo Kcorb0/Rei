@@ -1,11 +1,14 @@
 from datetime import datetime
 
 
-def get_time():
+def get_current_time(format="24", timezone="local"):
     current_time = datetime.now()
-    hr_24 = current_time.strftime("%H:%M")
 
-    return hr_24
+    if format == "24":
+        return current_time.strftime("%H:%M")
+    elif format == "12":
+        return current_time.strftime("%I:%M")
 
 
-print(get_time())
+def timer(length):
+    return None
